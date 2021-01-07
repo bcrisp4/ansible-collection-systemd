@@ -1,0 +1,13 @@
+---
+- name: ensure systemd files are in the corect state
+  ansible.builtin.template:
+    src: systemd.jinja2
+    dest: "{{ file.path }}"
+    owner: "{{ file.owner }}"
+    group: "{{ file.group }}"
+    mode: "{{ file.mode }}"
+  notify: "{{ file.handlers|default(omit) }}"
+  loop: "{{ systemd_files }}"
+  loop_control:
+    loop_var: file
+    label: "{{ file.path }}"

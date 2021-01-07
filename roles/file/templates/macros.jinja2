@@ -1,0 +1,30 @@
+{% macro print_systemd_parameter(name, value) %}
+{% if value is sameas true %}
+{% set value = "yes" %}
+{% endif %}
+{% if value is sameas false %}
+{% set value = "no" %}
+{% endif %}
+{{ name }}={{ value }}
+{% endmacro %}
+
+{% macro print_systemd_file(file) %}
+{% set sections = file.sections %}
+{% if sections is mapping %}
+{% set sections = sections|dict2items(key_name='name', value_name='parameters') %}
+{% endif %}
+{% for section in sections %}
+{% set section_joiner = joiner('\n') %}
+{{ section_joiner() }}
+[{{ section.name }}]
+{% for parameter_name, parameter_value in section.parameters.items() %}
+{% if parameter_value is iterable and parameter_value is not string %}
+{% for i in parameter_value %}
+{{ print_systemd_parameter(parameter_name, i) -}}
+{% endfor %}
+{% else %}
+{{ print_systemd_parameter(parameter_name, parameter_value) -}}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endmacro %}

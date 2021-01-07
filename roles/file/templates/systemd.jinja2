@@ -1,0 +1,3 @@
+{% import 'macros.jinja2' as m with context %}
+# {{ ansible_managed }}
+{{ m.print_systemd_file(file) }}
