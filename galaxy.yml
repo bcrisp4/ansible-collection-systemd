@@ -1,0 +1,20 @@
+---
+namespace: bcrisp4
+name: systemd
+version: 0.0.1
+readme: README.md
+authors:
+  - Ben Crisp <ben@thecrisp.io>
+description: role for managing systemd
+license:
+  - MIT
+license_file: LICENSE.txt
+tags:
+  - systemd
+dependencies: {}
+repository: https://github.com/bcrisp4/ansible-collection-systemd
+documentation: >-
+  https://github.com/bcrisp4/ansible-collection-systemd/blob/master/README.md
+homepage: https://github.com/bcrisp4/ansible-collection-systemd
+issues: https://github.com/bcrisp4/ansible-collection-systemd/issues
+build_ignore: []
