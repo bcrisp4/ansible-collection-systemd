@@ -1,0 +1,10 @@
+---
+- name: ensure systemd unit dropins are in the correct state
+  include_tasks: dropin.yml
+  loop: "{{ systemd_dropins }}"
+  loop_control:
+    loop_var: dropin
+    label: >-
+      {{ systemd_dropin_unit_user_dir if dropin.user_unit|default(False) else
+      systemd_dropin_unit_system_dir }}/{{ dropin.unit }}.d/
+      {{ dropin.name }}.conf
