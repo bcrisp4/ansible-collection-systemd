@@ -2,7 +2,7 @@
 
 *WIP*
 
-A collection of roles for Systed related things
+A collection of roles for Systemd related things
 
 ## Roles
 
