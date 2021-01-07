@@ -1,0 +1,30 @@
+---
+- name: Converge
+  hosts: all
+  handlers:
+    - name: dummy handler
+      debug:
+        msg: the dummy handler ran
+  vars:
+    _dummy_unit_sections:
+      Unit:
+        Description: A dummy service for testing
+      Service:
+        Type: oneshot
+        ExecStart: /bin/true
+    systemd_files:
+      - path: /tmp/test-systemd-unit-file.service
+        owner: root
+        group: root
+        mode: ugo=r
+        sections: "{{ _dummy_unit_sections }}"
+      - path: /tmp/test-systemd-unit-file-with-handler.service
+        owner: root
+        group: root
+        mode: ugo=r
+        handlers:
+          - dummy handler
+        sections: "{{ _dummy_unit_sections }}"
+  tasks:
+    - include_role:
+        name: bcrisp4.systemd.file

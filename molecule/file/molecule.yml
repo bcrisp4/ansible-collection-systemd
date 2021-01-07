@@ -1,0 +1,22 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: ${MOLECULE_DISTRO:-debian}
+    image: ${MOLECULE_DISTRO:-debian}
+provisioner:
+  name: ansible
+  playbooks:
+    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+lint: |
+  set -e
+  yamllint ${MOLECULE_PROJECT_DIRECTORY}/roles/${MOLECULE_SCENARIO_NAME} \
+    ${MOLECULE_SCENARIO_DIRECTORY}
+  ansible-lint ${MOLECULE_PROJECT_DIRECTORY}/roles/${MOLECULE_SCENARIO_NAME} \
+    ${MOLECULE_SCENARIO_DIRECTORY}
+  flake8 ${MOLECULE_SCENARIO_DIRECTORY}
+verifier:
+  name: testinfra
+  lint: flake8
