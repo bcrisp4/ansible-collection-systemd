@@ -1,0 +1,7 @@
+---
+- name: ensure systemd units are in the correct state
+  include_tasks: unit.yml
+  loop: "{{ systemd_units }}"
+  loop_control:
+    loop_var: unit
+    label: "{{ unit.name }}"

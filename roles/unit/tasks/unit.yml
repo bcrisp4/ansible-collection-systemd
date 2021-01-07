@@ -1,0 +1,32 @@
+---
+- name: >-
+    ensure that the systemd unit file for {{ unit.name }} is in the correct
+    state
+  import_role:
+    name: bcrisp4.systemd.file
+  vars:
+    systemd_files:
+      - path: >-
+          {{ systemd_unit_user_dir if unit.user_unit|default(False)
+          else systemd_unit_system_dir }}/{{ unit.name }}
+        owner: "{{ unit.owner|default(systemd_unit_file_owner) }}"
+        group: "{{ unit.group|default(systemd_unit_file_group) }}"
+        mode: "{{ unit.mode|default(systemd_unit_file_mode) }}"
+        sections: "{{ unit.sections }}"
+        handlers:
+          - reload systemd
+  when: unit.sections is defined
+
+- meta: flush_handlers
+
+- name: >-
+    {{ 'ensure that systemd unit \"{}\" is {} and {}'.format(unit.name, unit.state, 
+    'enabled' if unit.enabled
+    else 'not enabled')
+    if unit.manage|default(False)
+    else 'not managing unit state' }}
+  ansible.builtin.service:
+    name: "{{ unit.name }}"
+    state: "{{ unit.state|default(systemd_unit_service_state) }}"
+    enabled: "{{ unit.enabled|default(systemd_unit_service_enabled) }}"
+  when: unit.manage|default(systemd_unit_manage_service) == True
