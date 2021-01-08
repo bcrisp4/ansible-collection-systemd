@@ -16,6 +16,10 @@ Generates Systemd units (services, timers etc.)
 | systemd_unit_service_state   | started             | Default state of created units (can be overridden per unit)                                 |
 | systemd_unit_service_enabled | true                | Determines if the role should enable the unit by default (can be overridden per unit)       |
 
+## Dependencies
+
+- bcrisp4.systemd.file
+
 ## Examples
 
 ### Create a system service, but do not manage service state
