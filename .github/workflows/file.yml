@@ -5,12 +5,12 @@ on:
     paths:
       - 'roles/file/**'
       - 'molecule/file/**'
-      - '.github/workflows/chrony.yml'
+      - '.github/workflows/file.yml'
   pull_request:
     paths:
-      - 'roles/chrony/**'
+      - 'roles/file/**'
       - 'molecule/file/**'
-      - '.github/workflows/chrony.yml'
+      - '.github/workflows/file.yml'
 jobs:
   molecule:
     runs-on: ubuntu-latest
@@ -28,7 +28,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
         with:
-          path: ansible_collections/ericsysmin/system
+          path: ansible_collections/bcrisp4/systemd
 
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
