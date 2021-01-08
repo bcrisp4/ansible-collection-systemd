@@ -35,6 +35,12 @@ jobs:
         with:
           python-version: 3.9
 
+      - name: Cache Python environment
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('ansible_collections/bcrisp4/systemd/requirements.txt') }}
+
       - name: Install dependencies
         working-directory: ansible_collections/bcrisp4/systemd
         run: |
@@ -42,12 +48,6 @@ jobs:
           curl -fsSL https://get.docker.com | sudo sh -
           python3 -m pip install --upgrade pip
           python3 -m pip install -r requirements.txt
-
-      - name: Cache Python environment
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ hashFiles('ansible_collections/bcrisp4/systemd/requirements.txt') }}
 
       - name: Test role
         working-directory: ansible_collections/bcrisp4/systemd
