@@ -21,9 +21,9 @@ Generates Systemd units (services, timers, etc.), and can optionally manage the 
 Generates Systemd dropins to augment existing units
 
 ## Todo
-[ ] test suite (in progress)
-[ ] CI (in progress)
-[ ] resolved role
-[ ] timesyncd role
-[ ] networkd role
-[ ] systemd system config role
+- [ ] test suite (in progress)
+- [ ] CI (in progress)
+- [ ] resolved role
+- [ ] timesyncd role
+- [ ] networkd role
+- [ ] systemd system config role
