@@ -36,6 +36,7 @@ jobs:
           python-version: 3.9
 
       - name: Install dependencies
+        working-directory: ansible_collections/bcrisp4/systemd
         run: |
           sudo apt install docker
           python3 -m pip install --upgrade pip
