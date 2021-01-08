@@ -1,5 +1,6 @@
 name: "bcrisp4.systemd.file"
 on:
+  workflow_dispatch: {}
   push:
     paths:
       - 'roles/file/**'
