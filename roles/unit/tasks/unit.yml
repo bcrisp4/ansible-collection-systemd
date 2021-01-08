@@ -20,9 +20,8 @@
 - meta: flush_handlers
 
 - name: >-
-    {{ 'ensure that systemd unit \"{}\" is {} and {}'.format(unit.name, unit.state, 
-    'enabled' if unit.enabled
-    else 'not enabled')
+    {{ 'ensure that systemd unit "{}" is {} and {}'.format(unit.name,
+    unit.state, 'enabled' if unit.enabled else 'not enabled')
     if unit.manage|default(False)
     else 'not managing unit state' }}
   ansible.builtin.service:
