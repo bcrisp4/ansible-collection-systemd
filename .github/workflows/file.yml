@@ -45,10 +45,9 @@ jobs:
 
       - name: Cache Python environment
         uses: actions/cache@v2
-        working-directory: ansible_collections/bcrisp4/systemd
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('ansible_collections/bcrisp4/systemd/requirements.txt') }}
 
       - name: Test role
         working-directory: ansible_collections/bcrisp4/systemd
