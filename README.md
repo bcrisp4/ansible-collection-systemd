@@ -8,7 +8,7 @@ A collection of roles for Systemd related things
 
 _See individual role README files for more information._
 
-### [bcrisp4.systemd.file](https://github.com/bcrisp4/ansible-collection-systemd/tree/main/roles/file)
+### [bcrisp4.systemd.file](https://github.com/bcrisp4/ansible-collection-systemd/tree/main/roles/file) ![bcrisp4.systemd.file](https://github.com/bcrisp4/ansible-collection-systemd/workflows/bcrisp4.systemd.file/badge.svg)
 
 Generates Systemd-style (ini-like) configuration files
 
