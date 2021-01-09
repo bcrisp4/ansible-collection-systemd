@@ -27,8 +27,6 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-        with:
-          path: ansible_collections/bcrisp4/systemd
 
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
@@ -39,10 +37,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ hashFiles('ansible_collections/bcrisp4/systemd/requirements.txt') }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}
 
       - name: Install dependencies
-        working-directory: ansible_collections/bcrisp4/systemd
         run: |
           sudo apt install apt-transport-https ca-certificates curl software-properties-common
           curl -fsSL https://get.docker.com | sudo sh -
@@ -50,7 +47,6 @@ jobs:
           python3 -m pip install -r requirements.txt
 
       - name: Test role
-        working-directory: ansible_collections/bcrisp4/systemd
         run: >-
           molecule --version &&
           ansible --version &&
